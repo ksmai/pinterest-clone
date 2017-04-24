@@ -11,9 +11,13 @@
     "suppressImplicitAnyIndexErrors": true
   },
 
-  "exclude": {
+  "include": [
+    "src/**/*.ts"
+  ],
+
+  "exclude": [
     "node_modules",
     "src/client/testing"
-  }
+  ]
 }
 

@@ -9,8 +9,8 @@ export function listImages(offset = 0, limit = 10): Promise<any> {
     .populate('owner')
     .populate('likers')
     .exec()
-    .catch(err => {
+    .catch((err) => {
       console.error(`Error when listing images: ${err}`);
       throw err;
     });
-};
+}

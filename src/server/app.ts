@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
 
-(<any>mongoose).Promise = Promise;
+(mongoose as any).Promise = Promise;
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost/pinterest';
 mongoose
   .connect(MONGO_URL)
@@ -38,5 +38,5 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(
-  `${process.env.NODE_ENV} server is listening on port ${PORT}`
+  `${process.env.NODE_ENV} server is listening on port ${PORT}`,
 ));

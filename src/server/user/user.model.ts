@@ -1,26 +1,27 @@
 import { model, Schema } from 'mongoose';
 
 export class User {
+  /* tslint:disable-next-line: variable-name */
   _id?: string;
   name: string;
   picture: string;
   twitterID: string;
-};
+}
 
 export const userSchema = new Schema({
   name: {
-    type: String,
     required: true,
+    type: String,
   },
 
   picture: {
-    type: String,
     required: true,
+    type: String,
   },
 
   twitterID: {
-    type: String,
     required: true,
+    type: String,
   },
 });
 

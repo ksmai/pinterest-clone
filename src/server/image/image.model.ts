@@ -1,44 +1,45 @@
 import { model, Schema } from 'mongoose';
 
 export class Image {
+  /* tslint:disable-next-line */
   _id?: string;
-  url: string;
-  owner: string;
+  date?: Date;
   description?: string;
   likers: string[];
-  date?: Date;
+  owner: string;
+  url: string;
 }
 
 export const imageSchema = new Schema({
-  url: {
-    type: String,
-    required: true,
-    match: /^https?:\/\/.+/,
-  },
-
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+  date: {
+    default: Date.now,
+    type: Date,
   },
 
   description: {
-    type: String,
     maxlength: 128,
+    type: String,
   },
 
   likers: {
+    default: [],
     type: [{
-      type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
+      type: Schema.Types.ObjectId,
     }],
-    default: [],
   },
 
-  date: {
-    type: Date,
-    default: Date.now,
+  owner: {
+    ref: 'User',
+    required: true,
+    type: Schema.Types.ObjectId,
+  },
+
+  url: {
+    match: /^https?:\/\/.+/,
+    required: true,
+    type: String,
   },
 });
 

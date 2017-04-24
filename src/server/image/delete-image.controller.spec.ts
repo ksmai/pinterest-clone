@@ -1,19 +1,19 @@
-import { ImageModel } from './image.model';
-import { deleteImage } from './delete-image.controller';
 import { testImage } from '../testing/test-data';
-import { setupTest, resetTest, teardownTest } from '../testing/utils';
+import { resetTest, setupTest, teardownTest } from '../testing/utils';
+import { deleteImage } from './delete-image.controller';
+import { ImageModel } from './image.model';
 
 describe('deleteImage controller', () => {
   beforeAll(setupTest);
   beforeEach(resetTest([{ model: ImageModel, value: testImage }]));
   afterAll(teardownTest);
 
-  it('should delete an image', done => {
+  it('should delete an image', (done) => {
     ImageModel
       .findOne({})
       .then((image: any) => deleteImage({
-        userID: image.owner.toString(),
         imageID: image._id.toString(),
+        userID: image.owner.toString(),
       }))
       .then(() => ImageModel.find({}))
       .then((images: any) => {
@@ -22,7 +22,7 @@ describe('deleteImage controller', () => {
       .then(done, done.fail);
   });
 
-  it('should reject if userID/imageID is wrong', done => {
+  it('should reject if userID/imageID is wrong', (done) => {
     let userID: string;
     let imageID: string;
 

@@ -1,12 +1,14 @@
-import { ImageModel } from './image.model';
 import * as request from 'request';
+import { ImageModel } from './image.model';
 
 function checkImageUrl(url: string): Promise<any> {
   const TIMEOUT = 8000;
 
   return new Promise((resolve, reject) => {
     request.get(url, (err, res, body) => {
-      if (err) return reject(err);
+      if (err) {
+        return reject(err);
+      }
 
       if (!res || res.statusCode !== 200) {
         return reject(new Error(`Fail when requesting ${url}`));
@@ -38,7 +40,7 @@ export function postImage({ userID, url, description }: {
     .resolve()
     .then(() => checkImageUrl(url))
     .then(() => ImageModel.create({ url, description, owner: userID }))
-    .catch(err => {
+    .catch((err) => {
       console.error(`Fail to post image: ${url}\n${err}`);
       throw err;
     });

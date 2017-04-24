@@ -4,13 +4,13 @@ export function deleteImage(
   { userID, imageID }: { userID: any, imageID: string },
 ): Promise<any> {
   const query = {
-    owner: userID,
     _id: imageID,
+    owner: userID,
   };
-  
+
   return ImageModel
     .findOne(query)
-    .then(image => {
+    .then((image) => {
       if (!image) {
         const err = `Cannot delete image "${imageID}"`;
         console.error(err);
@@ -19,7 +19,7 @@ export function deleteImage(
 
       return image.remove();
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(`Error when deleting image: ${err}`);
       throw err;
     });

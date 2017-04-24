@@ -10,16 +10,16 @@ export function login(user: User): Promise<any> {
   };
   const options = {
     new: true,
-    upsert: true,
     runValidators: true,
     setDefaultsOnInsert: true,
+    upsert: true,
   };
-    
+
   return UserModel
     .findOneAndUpdate(query, updates, options)
     .exec()
-    .catch(error => {
+    .catch((error) => {
       console.error(`Error in login controller: ${error}`);
       throw error;
     });
-};
+}

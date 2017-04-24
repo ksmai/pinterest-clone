@@ -1,18 +1,18 @@
 import * as mongoose from 'mongoose';
 
 import { testUser } from '../testing/test-data';
-import { User, UserModel } from './user.model';
-import { setupTest, resetTest, teardownTest } from '../testing/utils';
+import { resetTest, setupTest, teardownTest } from '../testing/utils';
 import { login } from './login.controller';
+import { User, UserModel } from './user.model';
 
 describe('login controller', () => {
   beforeAll(setupTest);
   beforeEach(resetTest([{ model: UserModel, value: testUser }]));
   afterAll(teardownTest);
 
-  it('should log existing user in', done => {
+  it('should log existing user in', (done) => {
     login(testUser)
-      .then(user => {
+      .then((user) => {
         const userObj = Object.assign(
           {},
           user.toObject(),
@@ -22,39 +22,39 @@ describe('login controller', () => {
 
         return UserModel.find({}).exec();
       })
-      .then(users => {
+      .then((users) => {
         expect(users.length).toBe(1);
       })
       .then(done)
       .catch(done.fail);
   });
 
-  it('should create new record for new user', done => {
+  it('should create new record for new user', (done) => {
     const newUser: User = {
-      twitterID: testUser.twitterID + 'somesuffix',
       name: 'A NEW USER',
       picture: 'new.png',
+      twitterID: testUser.twitterID + 'somesuffix',
     };
 
     login(newUser)
-      .then(user => {
+      .then((user) => {
         expect(user).toEqual(jasmine.objectContaining(newUser));
 
         return UserModel.find({}).exec();
       })
-      .then(users => {
+      .then((users) => {
         expect(users.length).toBe(2);
       })
       .then(done)
       .catch(done.fail);
   });
 
-  it('should reject if user data is invalid', done => {
+  it('should reject if user data is invalid', (done) => {
     const invalidUser = {
-      twitterID: 'someid',
       picture: 'user.without.name.jpg',
+      twitterID: 'someid',
     };
 
-    login(<User>invalidUser).then(done.fail, done);
+    login(invalidUser as User).then(done.fail, done);
   });
 });

@@ -14,14 +14,14 @@ export function likeImage(
 
   const options = {
     new: true,
-    upsert: false,
     runValidators: true,
+    upsert: false,
   };
 
   return ImageModel
     .findOneAndUpdate(query, updates, options)
     .exec()
-    .then(image => {
+    .then((image) => {
       if (!image) {
         const err = `Fail to like image "${imageID}"`;
         console.error(err);

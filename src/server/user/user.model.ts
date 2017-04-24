@@ -1,6 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 export class User {
+  _id?: string;
   name: string;
   picture: string;
   twitterID: string;

@@ -23,7 +23,12 @@ describe('Deserialize controller', () => {
   it('can deserialize an existing user', done => {
     deserialize(id)
       .then(user => {
-        expect(user).toEqual(jasmine.objectContaining(testUser));
+        const userObj = Object.assign(
+          {},
+          user.toObject(),
+          { _id: user._id.toString() },
+        );
+        expect(userObj).toEqual(jasmine.objectContaining(testUser));
       })
       .then(done, done.fail);
   });

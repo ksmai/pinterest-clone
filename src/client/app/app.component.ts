@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'pin-app',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  appTitle = 'pinterest clone';
+  @HostBinding('class.dark-theme') dark = false;
+
+  toggleLight(): void {
+    this.dark = !this.dark;
+  }
 }

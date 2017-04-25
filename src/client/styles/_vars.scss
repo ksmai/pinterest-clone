@@ -1,0 +1,7 @@
+$primary-color: mat-color($primary-palette);
+$primary-color-light: mat-color($primary-palette, 100);
+$primary-color-dark: mat-color($primary-palette, 700);
+
+$accent-color: mat-color($secondary-palette);
+$accent-color-light: mat-color($secondary-palette, A100);
+$accent-color-dark: mat-color($secondary-palette, A400);

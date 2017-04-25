@@ -1,0 +1,12 @@
+@import './base';
+
+/* Angular Material custom theme */
+@import '~@angular/material/theming';
+@include mat-core();
+@import './material-theme';
+@include angular-material-theme($light-theme);
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+}
+
+@import './vars';

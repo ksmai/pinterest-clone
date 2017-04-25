@@ -41,6 +41,21 @@ describe('api', () => {
         .catch(done.fail);
     });
 
+    it('should not be able to list my images', (done) => {
+      const spy = spyOn(listImagesController, 'listMyImages');
+
+      request
+        .get(url + '/me')
+        .expect(401)
+        .expect('Content-Type', /json/)
+        .then((res: any) => {
+          expect(spy).not.toHaveBeenCalled();
+          expect(res.body.error).toBeDefined();
+        })
+        .then(done)
+        .catch(done.fail);
+    });
+
     it('should not be able to post new image', (done) => {
       const imageUrl = 'https://image/cool';
       const spy = spyOn(postImageController, 'postImage');
@@ -111,6 +126,23 @@ describe('api', () => {
 
       request
         .get(url)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .then((res: any) => {
+          expect(spy).toHaveBeenCalled();
+          expect(res.body.images).toBeDefined();
+        })
+        .then(done)
+        .catch(done.fail);
+    });
+
+    it('should list all of my images', (done) => {
+      const spy = spyOn(listImagesController, 'listMyImages')
+        .and
+        .returnValue(Promise.resolve([]));
+
+      request
+        .get(url + '/me')
         .expect(200)
         .expect('Content-Type', /json/)
         .then((res: any) => {

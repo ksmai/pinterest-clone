@@ -5,11 +5,17 @@ import { ensureLogin } from './auth/helpers';
 import { errorHandler } from './helpers/error-handler';
 import { deleteImage } from './image/delete-image.controller';
 import { likeImage } from './image/like-image.controller';
-import { listImages } from './image/list-images.controller';
+import { listImages, listMyImages } from './image/list-images.controller';
 import { postImage } from './image/post-image.controller';
 
 export const apiRouter = Router();
 const jsonParser = bodyParser.json();
+
+apiRouter.get('/api/v1/image/me', ensureLogin, (req, res, next) => {
+  listMyImages(req.user._id)
+    .then(images => res.json({ images }))
+    .catch(err => next(err));
+});
 
 apiRouter
   .route('/api/v1/image')

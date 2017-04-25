@@ -14,3 +14,16 @@ export function listImages(offset = 0, limit = 10): Promise<any> {
       throw err;
     });
 }
+
+export function listMyImages(userID: any): Promise<any> {
+  return ImageModel
+    .find({ owner: userID })
+    .sort({ date: -1 })
+    .populate('owner')
+    .populate('likers')
+    .exec()
+    .catch((err) => {
+      console.error(`Error when listing my images: ${err}`);
+      throw err;
+    });
+}

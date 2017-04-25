@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import 'hammerjs';
 import {
   BrowserAnimationsModule,
 } from '@angular/platform-browser/animations';
+import 'hammerjs';
 
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { NavbarModule } from './navbar/navbar.module';
 import '../styles/styles.scss';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { FooterModule } from './footer/footer.module';
+import { NavbarModule } from './navbar/navbar.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import '../styles/styles.scss';
     CoreModule,
     SharedModule,
     NavbarModule,
+    FooterModule,
     AppRoutingModule,
   ],
 

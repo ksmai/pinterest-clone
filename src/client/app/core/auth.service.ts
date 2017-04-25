@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/retryWhen';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 
-import { User } from '../helpers/user';
 import { retry } from '../helpers/retry';
+import { User } from '../helpers/user';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +28,7 @@ export class AuthService {
     if (refresh) {
       this.http
         .get('/auth/me')
-        .map(res => res.json().user as User)
+        .map((res) => res.json().user as User)
         .retryWhen(retry())
         .subscribe(
           (user) => this.userSubject.next(user),

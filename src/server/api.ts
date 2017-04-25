@@ -13,8 +13,8 @@ const jsonParser = bodyParser.json();
 
 apiRouter.get('/api/v1/image/me', ensureLogin, (req, res, next) => {
   listMyImages(req.user._id)
-    .then(images => res.json({ images }))
-    .catch(err => next(err));
+    .then((images) => res.json({ images }))
+    .catch((err) => next(err));
 });
 
 apiRouter

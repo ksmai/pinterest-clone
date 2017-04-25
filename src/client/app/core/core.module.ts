@@ -3,6 +3,7 @@ import { HttpModule } from '@angular/http';
 
 import { AuthService } from './auth.service';
 import { ImageService } from './image.service';
+import { StorageService } from './storage.service';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { ImageService } from './image.service';
   providers: [
     AuthService,
     ImageService,
+    StorageService,
   ],
 })
 export class CoreModule {

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import {
-  MdToolbarModule,
   MdButtonModule,
+  MdCardModule,
+  MdDialogModule,
   MdIconModule,
   MdInputModule,
-  MdCardModule,
   MdSnackBarModule,
-  MdDialogModule,
+  MdToolbarModule,
 } from '@angular/material';
 
 @NgModule({

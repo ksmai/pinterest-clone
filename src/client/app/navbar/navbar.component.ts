@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.authService
       .getUser(true)
-      .subscribe(user => {
+      .subscribe((user) => {
         const newLogin = user &&
           (!this.user || user.name !== this.user.name);
         if (newLogin) {
@@ -38,4 +38,3 @@ export class NavbarComponent implements OnInit {
     this.snackbar.open('Bye!', null, { duration: 2000 });
   }
 }
-

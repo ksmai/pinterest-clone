@@ -19,7 +19,7 @@ describe('auth', () => {
           if (strategy === 'twitter') {
             if (options && options.failureRedirect) {
               req.user = { _id: userID };
-            } else if(!options) {
+            } else if (!options) {
               res.redirect('/auth/twitter/callback');
 
               return;

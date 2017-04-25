@@ -1,9 +1,9 @@
 import * as compression from 'compression';
 import * as express from 'express';
+import * as helmet from 'helmet';
 import * as mongoose from 'mongoose';
 import * as passport from 'passport';
 import * as path from 'path';
-import * as helmet from 'helmet';
 
 import { apiRouter } from './api';
 import { authRouter } from './auth/passport.config';

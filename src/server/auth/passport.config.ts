@@ -2,11 +2,11 @@ import { Router } from 'express';
 import * as passport from 'passport';
 import { Strategy as TwitterStrategy } from 'passport-twitter';
 
-import { deserialize } from '../user/deserialize.controller';
-import { ensureLogin, ensureNotLogin } from './helpers';
 import { errorHandler } from '../helpers/error-handler';
+import { deserialize } from '../user/deserialize.controller';
 import { login } from '../user/login.controller';
 import { User } from '../user/user.model';
+import { ensureLogin, ensureNotLogin } from './helpers';
 
 const consumerKey = process.env.TWITTER_CONSUMER_KEY;
 const consumerSecret = process.env.TWITTER_CONSUMER_SECRET;
@@ -28,16 +28,16 @@ const twitterCallback = (
     name: profile.displayName || profile.username,
     picture: profile.photos[0].value,
   })
-    .then(user => cb(null, user))
-    .catch(err => cb(err));
+    .then((user) => cb(null, user))
+    .catch((err) => cb(err));
 };
 
 passport.use(new TwitterStrategy(twitterOptions, twitterCallback));
 passport.serializeUser((user: User, done: any) => done(null, user._id));
 passport.deserializeUser((id: string, done: any) => {
   deserialize(id)
-    .then(user => done(null, user))
-    .catch(err => done(err));
+    .then((user) => done(null, user))
+    .catch((err) => done(err));
 });
 
 export const authRouter = Router();

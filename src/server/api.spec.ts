@@ -1,11 +1,11 @@
 import * as express from 'express';
 import * as supertest from 'supertest';
 
-import * as listImagesController from './image/list-images.controller';
-import * as likeImageController from './image/like-image.controller';
-import * as postImageController from './image/post-image.controller';
-import * as deleteImageController from './image/delete-image.controller';
 import { apiRouter } from './api';
+import * as deleteImageController from './image/delete-image.controller';
+import * as likeImageController from './image/like-image.controller';
+import * as listImagesController from './image/list-images.controller';
+import * as postImageController from './image/post-image.controller';
 
 describe('api', () => {
   let request: any;

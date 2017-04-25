@@ -1,12 +1,12 @@
-import { Router } from 'express';
 import * as bodyParser from 'body-parser';
+import { Router } from 'express';
 
-import { listImages } from './image/list-images.controller';
-import { postImage } from './image/post-image.controller';
-import { likeImage } from './image/like-image.controller';
-import { deleteImage } from './image/delete-image.controller';
 import { ensureLogin } from './auth/helpers';
 import { errorHandler } from './helpers/error-handler';
+import { deleteImage } from './image/delete-image.controller';
+import { likeImage } from './image/like-image.controller';
+import { listImages } from './image/list-images.controller';
+import { postImage } from './image/post-image.controller';
 
 export const apiRouter = Router();
 const jsonParser = bodyParser.json();
@@ -19,8 +19,8 @@ apiRouter
     const limit = +req.query.limit || 10;
 
     listImages(skip, limit)
-      .then(images => res.json({ images }))
-      .catch(err => next(err));
+      .then((images) => res.json({ images }))
+      .catch((err) => next(err));
   })
 
   .post(ensureLogin, jsonParser, (req, res, next) => {
@@ -29,8 +29,8 @@ apiRouter
       description: req.body.description,
       url: req.body.url,
     })
-      .then(image => res.json({ image }))
-      .catch(err => next(err));
+      .then((image) => res.json({ image }))
+      .catch((err) => next(err));
   })
 
   .put(ensureLogin, jsonParser, (req, res, next) => {
@@ -38,8 +38,8 @@ apiRouter
       userID: req.user._id,
       imageID: req.body.imageID,
     })
-      .then(image => res.json({ image }))
-      .catch(err => next(err));
+      .then((image) => res.json({ image }))
+      .catch((err) => next(err));
   })
 
   .delete(ensureLogin, jsonParser, (req, res, next) => {
@@ -47,8 +47,8 @@ apiRouter
       userID: req.user._id,
       imageID: req.body.imageID,
     })
-      .then(image => res.json({ image }))
-      .catch(err => next(err));
+      .then((image) => res.json({ image }))
+      .catch((err) => next(err));
   });
 
 apiRouter.use(errorHandler);

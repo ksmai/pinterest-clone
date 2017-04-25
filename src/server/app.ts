@@ -1,6 +1,12 @@
+import * as bodyParser from 'body-parser';
+import * as compression from 'compression';
 import * as express from 'express';
 import * as mongoose from 'mongoose';
+import * as passport from 'passport';
 import * as path from 'path';
+import * as helmet from 'helmet';
+
+import { authRouter } from './auth/passport.config';
 
 /* tslint:disable: no-console */
 
@@ -15,6 +21,27 @@ mongoose
   });
 
 export const app = express();
+app.use(compression());
+app.use(helmet());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const SECRET = process.env.SECRET || 'keyboard cat';
+const SESSION_OPTIONS = {
+  secret: SECRET,
+  resave: false,
+  saveUninitialized: false,
+  maxAge: 24 * 60 * 60 * 1000,
+};
+if (process.env.NODE_ENV === 'production') {
+  app.use(require('cookie-session')(SESSION_OPTIONS));
+} else {
+  app.use(require('express-session')(SESSION_OPTIONS));
+}
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(authRouter);
 
 if (process.env.NODE_ENV === 'production') {
   const DIST = path.join(__dirname, '..', '..', 'dist');

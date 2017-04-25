@@ -2,6 +2,8 @@ import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
 
+/* tslint:disable: no-console */
+
 (mongoose as any).Promise = Promise;
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost/pinterest';
 mongoose

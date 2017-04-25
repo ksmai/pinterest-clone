@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'pinterest-clone',
+  selector: 'pin-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

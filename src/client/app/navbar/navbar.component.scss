@@ -1,0 +1,35 @@
+.stretch {
+  flex: 1;
+}
+
+.avatar {
+  max-height: 100%;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.user,
+.name {
+  overflow: hidden;
+  min-width: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.login {
+  background: url("../../../../assets/twitter.png") no-repeat 0 0;
+  background-size: contain;
+  padding-left: 40px;
+}
+
+.logo {
+  letter-spacing: .2em;
+  font-size: 1.3em;
+  margin-left: 15px;
+}
+
+@media (max-width: 400px) {
+  .logo {
+    display: none;
+  }
+}

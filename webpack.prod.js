@@ -81,6 +81,15 @@ module.exports = {
           fallback: 'style-loader',
         }),
       },
+      {
+        test: /\.(?:png|jpe?g|svg|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000, 
+          },
+        },
+      },
     ],
   },
 

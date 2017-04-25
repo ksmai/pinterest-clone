@@ -29,6 +29,10 @@ module.exports = {
         exclude: /\.component\.(?:sa|s?c)ss$/,
         use: 'null-loader',
       },
+      {
+        test: /\.(?:png|jpe?g|svg|gif)$/,
+        use: 'null-loader',
+      },
     ],
   },
 

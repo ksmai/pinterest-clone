@@ -43,6 +43,15 @@ module.exports = {
         exclude: /\.component\.(?:sa|s?c)ss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(?:png|jpe?g|svg|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000, 
+          },
+        },
+      },
     ],
   },
 

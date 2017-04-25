@@ -1,3 +1,23 @@
 <md-toolbar color="primary">
-  <button md-button>Login</button>
+  <a md-button routerLink="/">
+    <md-icon>home</md-icon>
+    <span class="logo">PINTEREST</span>
+  </a>
+
+  <span class="stretch"></span>
+
+  <ng-container *ngIf="user; else login">
+    <a md-button routerLink="/me" class="user">
+      <img [src]="user.picture" [alt]="user.name" class="avatar">
+      <span class="name">{{user.name}}</span>
+    </a>
+
+    <button md-icon-button (click)="logout()">
+      <md-icon>exit_to_app</md-icon>
+    </button>
+  </ng-container>
+
+  <ng-template #login>
+    <a md-button href="/auth/twitter" class="login">LOGIN</a>
+  </ng-template>
 </md-toolbar>

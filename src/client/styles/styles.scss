@@ -1,4 +1,4 @@
-@import './base';
+@import './reset';
 
 /* Angular Material custom theme */
 @import '~@angular/material/theming';
@@ -10,3 +10,4 @@
 }
 
 @import './vars';
+@import './base';

@@ -4,6 +4,7 @@ import { Strategy as TwitterStrategy } from 'passport-twitter';
 
 import { deserialize } from '../user/deserialize.controller';
 import { ensureLogin, ensureNotLogin } from './helpers';
+import { errorHandler } from '../helpers/error-handler';
 import { login } from '../user/login.controller';
 import { User } from '../user/user.model';
 
@@ -69,9 +70,4 @@ authRouter.get(
   (req, res) => res.json({ user: req.user }),
 );
 
-authRouter.use((err: Error|any, req: any, res: any, next: any) => {
-  const statusCode = err.status || 400;
-  const message = err.message || err;
-
-  res.status(statusCode).json({ error: message });
-});
+authRouter.use(errorHandler);

@@ -12,34 +12,35 @@ export class Image {
 
 export const imageSchema = new Schema({
   date: {
-    default: Date.now,
     type: Date,
+    default: Date.now,
   },
 
   description: {
-    maxlength: 128,
     type: String,
+    maxlength: 128,
+    trim: true,
   },
 
   likers: {
-    default: [],
     type: [{
       ref: 'User',
       required: true,
       type: Schema.Types.ObjectId,
     }],
+    default: [],
   },
 
   owner: {
+    type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
-    type: Schema.Types.ObjectId,
   },
 
   url: {
+    type: String,
     match: /^https?:\/\/.+/,
     required: true,
-    type: String,
   },
 });
 

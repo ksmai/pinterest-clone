@@ -1,4 +1,3 @@
-import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as express from 'express';
 import * as mongoose from 'mongoose';
@@ -6,7 +5,9 @@ import * as passport from 'passport';
 import * as path from 'path';
 import * as helmet from 'helmet';
 
+import { apiRouter } from './api';
 import { authRouter } from './auth/passport.config';
+import { errorHandler } from './helpers/error-handler';
 
 /* tslint:disable: no-console */
 
@@ -23,8 +24,6 @@ mongoose
 export const app = express();
 app.use(compression());
 app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 const SECRET = process.env.SECRET || 'keyboard cat';
 const SESSION_OPTIONS = {
@@ -42,6 +41,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(authRouter);
+app.use(apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
   const DIST = path.join(__dirname, '..', '..', 'dist');
@@ -64,6 +64,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(historyApiFallback());
   app.use(instance);
 }
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(

@@ -16,7 +16,7 @@ module.exports = function (config) {
       noInfo: true,
     },
 
-    browsers: ['Chromes'],
+    browsers: ['Chrome'],
     frameworks: ['jasmine'],
     reporters: ['progress', 'kjhtml'],
     singleRun: true,

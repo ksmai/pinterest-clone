@@ -15,7 +15,7 @@ appContext.keys().forEach(appContext);
 const testing = require('@angular/core/testing');
 const browser = require('@angular/platform-browser-dynamic/testing');
 
-testing.TestBed.initTestingEnvironment(
+testing.TestBed.initTestEnvironment(
   browser.BrowserDynamicTestingModule,
   browser.platformBrowserDynamicTesting()
 );

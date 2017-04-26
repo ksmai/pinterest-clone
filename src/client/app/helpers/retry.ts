@@ -9,7 +9,7 @@ function shouldRetry(statusCode: number) {
   return [400, 401].indexOf(statusCode) === -1;
 }
 
-export function retry(count = 2, delay = 1000) {
+export function retry(count = 3, delay = 1000) {
   return (errors: Observable<any>) => errors
     .mergeMap((error) => shouldRetry(error.status) ?
       Observable.of(error) :

@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FooterModule } from './footer/footer.module';
 import { NavbarModule } from './navbar/navbar.module';
+import { HomeModule } from './home/home.module';
+import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -22,6 +24,8 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     NavbarModule,
     FooterModule,
+    UserModule,
+    HomeModule,
     AppRoutingModule,
   ],
 

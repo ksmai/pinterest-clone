@@ -30,10 +30,7 @@ export class AuthService {
 
   getUser(refresh = false): Observable<User> {
     if (refresh) {
-      this.http
-        .get('/auth/me')
-        .map((res) => res.json().user as User)
-        .retryWhen(retry())
+      this.checkUser()
         .subscribe(
           (user) => this.userSubject.next(user),
           () => this.userSubject.next(null),
@@ -41,5 +38,12 @@ export class AuthService {
     }
 
     return this.userStream;
+  }
+
+  checkUser(): Observable<User> {
+    return this.http
+      .get('/auth/me')
+      .map((res) => res.json().user as User)
+      .retryWhen(retry());
   }
 }

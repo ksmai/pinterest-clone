@@ -1,0 +1,14 @@
+<form [formGroup]="form" novalidate (ngSubmit)="submitForm()">
+  <md-input-container>
+    <input mdInput formControlName="url" type="text">
+  </md-input-container>
+
+  <md-input-container>
+    <input mdInput formControlName="description" type="text">
+  </md-input-container>
+
+  <button type="submit" md-raised-button>Submit</button>
+  <button type="reset" md-raised-button (click)="resetForm()">Reset</button>
+
+  {{form.value | json}}
+</form>

@@ -1,0 +1,27 @@
+<md-card *ngFor="let image of images">
+  <img md-card-image [src]="image.url" [alt]="image.description">
+
+  <md-card-content>{{image.description}}</md-card-content>
+
+  <md-card-actions>
+    <button md-icon-button><md-icon>star_rate</md-icon></button>
+    <button md-icon-button><md-icon>star_border</md-icon></button>
+  </md-card-actions>
+
+  <md-card-footer>
+    <md-nav-list>
+      <md-list-item>
+        <img
+          md-list-avatar
+          [src]="image.owner.picture"
+          [alt]="'Avatar of ' + image.owner.name"
+        >
+        <a
+          md-line
+          [href]="'https://twitter.com/intent/user?user_id=' +
+            image.owner.twitterID"
+        >{{image.owner.name}}</a>
+      </md-list-item>
+    </md-nav-list>
+  </md-card-footer>
+</md-card>

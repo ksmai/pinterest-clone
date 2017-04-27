@@ -7,7 +7,7 @@
   <span class="stretch"></span>
 
   <ng-container *ngIf="user; else login">
-    <a md-button routerLink="/me" class="user">
+    <a md-button routerLink="/user" class="user">
       <img [src]="user.picture" [alt]="user.name" class="avatar">
       <span class="name">{{user.name}}</span>
     </a>

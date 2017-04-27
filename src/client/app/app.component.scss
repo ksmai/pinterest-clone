@@ -1,11 +1,19 @@
 .container {
-  height: 100%;
+  min-height: 100%;
   padding-top: 64px;
   padding-bottom: 64px;
 }
 
 button {
   position: fixed;
-  bottom: 36px;
-  right: 36px;
+  bottom: 28px;
+  right: 28px;
+  z-index: 2;
+}
+
+@media (min-width: 601px) {
+  button {
+    bottom: 36px;
+    right: 36px;
+  }
 }

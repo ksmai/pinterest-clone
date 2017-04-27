@@ -12,6 +12,7 @@ import { User } from '../helpers/user';
 export class AuthService {
   private userSubject: BehaviorSubject<User>;
   private userStream: Observable<User>;
+  private inFlight = false;
 
   constructor(private http: Http) {
     this.userSubject = new BehaviorSubject(null);
@@ -29,11 +30,13 @@ export class AuthService {
   }
 
   getUser(refresh = false): Observable<User> {
-    if (refresh) {
+    if (refresh && !this.inFlight) {
+      this.inFlight = true;
       this.checkUser()
         .subscribe(
           (user) => this.userSubject.next(user),
           () => this.userSubject.next(null),
+          () => this.inFlight = false,
         );
     }
 

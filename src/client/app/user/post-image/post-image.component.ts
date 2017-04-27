@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { StorageService } from '../../core/storage.service';
 import { ImageService } from '../../core/image.service';
 import { PinImage } from '../../helpers/pin-image';
+import { imageURLValidator } from '../../helpers/image-url-validator';
 
 @Component({
   selector: 'pin-post-image',
@@ -58,8 +59,8 @@ export class PostImageComponent {
 
   private createForm(): void {
     this.form = this.fb.group({
-      url: '',
-      description: '',
+      url: ['', imageURLValidator],
+      description: ['', Validators.maxLength(128)],
     });
     this.resetForm();
   }

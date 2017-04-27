@@ -1,14 +1,38 @@
-<form [formGroup]="form" novalidate (ngSubmit)="submitForm()">
-  <md-input-container>
-    <input mdInput formControlName="url" type="text">
-  </md-input-container>
+<md-card>
+  <img
+    md-card-image
+    [src]="form.value.url"
+    *ngIf="form.get('url').status === 'VALID'"
+  >
 
-  <md-input-container>
-    <input mdInput formControlName="description" type="text">
-  </md-input-container>
+  <md-card-content>
+    <form [formGroup]="form" novalidate (ngSubmit)="submitForm()">
+      <md-input-container>
+        <input mdInput formControlName="url" type="url">
+        <md-placeholder>Image URL</md-placeholder>
+      </md-input-container>
 
-  <button type="submit" md-raised-button>Submit</button>
-  <button type="reset" md-raised-button (click)="resetForm()">Reset</button>
+      <md-input-container>
+        <input mdInput formControlName="description" type="text">
+        <md-placeholder>Description (optional)</md-placeholder>
+        <md-hint align="end" *ngIf="form.value.description?.length > 100">
+          {{form.value.description?.length}} / 128
+        </md-hint>
+        <md-error align="end">
+          {{form.value.description?.length}} / 128
+        </md-error>
+      </md-input-container>
 
-  {{form.value | json}}
-</form>
+      <button type="submit" md-button [disabled]="form.status !== 'VALID'">
+        Submit
+      </button>
+
+      <button
+        type="button"
+        md-button
+        (click)="resetForm()"
+        [disabled]="form.pristine"
+      >Reset</button>
+    </form>
+  </md-card-content>
+</md-card>

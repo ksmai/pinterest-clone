@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdSnackBar, MdDialog } from '@angular/material';
 
 import { ImageService } from '../core/image.service';
 import { PinImage } from '../helpers/pin-image';
+import { DialogComponent } from '../shared/dialog/dialog.component';
+import { showPlaceholder } from '../helpers/show-placeholder';
 
 @Component({
   templateUrl: './user.component.html',
@@ -10,10 +12,12 @@ import { PinImage } from '../helpers/pin-image';
 })
 export class UserComponent implements OnInit {
   images: PinImage[] = [];
+  @ViewChild('masonry') private masonry: any;
 
   constructor(
     private imageService: ImageService,
     private snackbar: MdSnackBar,
+    private dialog: MdDialog,
   ) {
   }
 
@@ -45,6 +49,19 @@ export class UserComponent implements OnInit {
   }
 
   confirmDelete(id: string): void {
-    return this.delete(id);
+    this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Delete image?',
+        yes: 'Delete',
+        no: 'Cancel',
+      },
+    })
+      .afterClosed()
+      .subscribe((ans: boolean) => ans && this.delete(id));
+  }
+
+  showPlaceholder(image: PinImage): void {
+    showPlaceholder(image);
+    this.masonry.updateLayout();
   }
 }

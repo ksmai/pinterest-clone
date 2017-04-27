@@ -1,15 +1,32 @@
 <pin-post-image></pin-post-image>
 
-<md-card *ngFor="let image of images">
-  <img md-card-image [src]="image.url" [alt]="image.description">
+<div
+  [masonryLayout]="250"
+  [masonryLength]="images.length"
+  class="masonry-gird"
+  #masonry="masonryLayout"
+>
+  <md-card *ngFor="let image of images" class="masonry-item">
+    <md-card-subtitle>{{image.date|date:'short'}}</md-card-subtitle>
 
-  <md-card-content>{{image.description}}</md-card-content>
+    <img
+      md-card-image
+      [src]="image.url"
+      [alt]="image.description"
+      (error)="showPlaceholder(image)"
+    >
 
-  <md-card-actions>
-    <button md-icon-button (click)="confirmDelete(image._id)">
-      <md-icon>delete</md-icon>
-    </button>
-  </md-card-actions>
+    <md-card-subtitle>{{image.description}}</md-card-subtitle>
 
-  <md-card-footer>{{image.date|date}}</md-card-footer>
-</md-card>
+    <md-card-actions>
+      <button md-button disabled>
+        <md-icon>star_rate</md-icon>
+        {{image.likers.length}}
+      </button>
+
+      <button md-icon-button (click)="confirmDelete(image._id)">
+        <md-icon>delete</md-icon>
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>

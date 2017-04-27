@@ -1,7 +1,6 @@
 .container {
   min-height: 100%;
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding: 64px 10px;
 }
 
 button {
@@ -15,5 +14,10 @@ button {
   button {
     bottom: 36px;
     right: 36px;
+  }
+
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

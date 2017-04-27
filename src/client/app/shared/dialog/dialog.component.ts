@@ -17,7 +17,7 @@ export class DialogComponent {
   ) {
     this.title = data.title || 'Are you sure?';
     this.content = data.content || '';
-    this.yes = 'Yes' || '';
-    this.no = 'No' || '';
+    this.yes = data.yes || 'Yes';
+    this.no = data.no || 'No';
   }
 }

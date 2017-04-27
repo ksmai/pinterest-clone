@@ -1,10 +1,19 @@
 md-card {
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top: 20px;
+  width: 250px;
+  margin: 15px;
 }
 
 md-input-container,
-input {
+input,
+textarea {
   width: 100%;
+}
+
+md-progress-spinner {
+  display: inline-block;
+  height: 36px;
+}
+
+textarea {
+  resize: none;
 }

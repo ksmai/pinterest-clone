@@ -1,8 +1,16 @@
-<md-card>
+<md-card class="masonry-item">
+  <md-card-title>New image</md-card-title>
+
   <img
     md-card-image
     [src]="form.value.url"
     *ngIf="form.get('url').status === 'VALID'"
+  >
+
+  <img
+    md-card-image
+    [src]="placeholder"
+    *ngIf="form.get('url').status !== 'VALID'"
   >
 
   <md-card-content>
@@ -10,10 +18,20 @@
       <md-input-container>
         <input mdInput formControlName="url" type="url">
         <md-placeholder>Image URL</md-placeholder>
+        <md-error align="end" *ngIf="form.value.url?.length > 0">
+          Invalid URL
+        </md-error>
+        <md-error align="end" *ngIf="form.value.url?.length === 0">
+          URL is required
+        </md-error>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput formControlName="description" type="text">
+        <textarea
+          mdInput
+          rows="4"
+          formControlName="description"
+        ></textarea>
         <md-placeholder>Description (optional)</md-placeholder>
         <md-hint align="end" *ngIf="form.value.description?.length > 100">
           {{form.value.description?.length}} / 128
@@ -23,15 +41,23 @@
         </md-error>
       </md-input-container>
 
-      <button type="submit" md-button [disabled]="form.status !== 'VALID'">
+      <button
+        type="submit"
+        md-button
+        [disabled]="form.status !== 'VALID'"
+        *ngIf="!submitted"
+      >
         Submit
       </button>
+
+      <md-progress-spinner *ngIf="submitted" mode="indeterminate">
+      </md-progress-spinner>
 
       <button
         type="button"
         md-button
         (click)="resetForm()"
-        [disabled]="form.pristine"
+        [disabled]="form.pristine || submitted"
       >Reset</button>
     </form>
   </md-card-content>

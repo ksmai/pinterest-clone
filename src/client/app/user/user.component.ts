@@ -64,4 +64,8 @@ export class UserComponent implements OnInit {
     showPlaceholder(image);
     this.masonry.updateLayout();
   }
+
+  createImage(image: PinImage): void {
+    this.images.unshift(image);
+  }
 }

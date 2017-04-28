@@ -1,23 +1,23 @@
+import { DebugElement } from '@angular/core';
 import {
-  TestBed,
   async,
   ComponentFixture,
   fakeAsync,
+  TestBed,
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { Observable } from 'rxjs/Observable';
 
-import { StorageService } from '../../core/storage.service';
-import { ImageService } from '../../core/image.service';
-import { UserModule } from '../user.module';
-import { SharedModule } from '../../shared/shared.module';
 import { CoreModule } from '../../core/core.module';
-import { PostImageComponent } from './post-image.component';
+import { ImageService } from '../../core/image.service';
+import { StorageService } from '../../core/storage.service';
 import * as validators from '../../helpers/image-url-validator';
+import { SharedModule } from '../../shared/shared.module';
+import { UserModule } from '../user.module';
+import { PostImageComponent } from './post-image.component';
 
 let fixture: ComponentFixture<PostImageComponent>;
 let component: PostImageComponent;
@@ -102,9 +102,9 @@ describe('PostImageComponent', () => {
     TestBed
       .configureTestingModule({
         imports: [
-          SharedModule, 
-          CoreModule, 
-          UserModule, 
+          SharedModule,
+          CoreModule,
+          UserModule,
           NoopAnimationsModule,
         ],
       })

@@ -1,24 +1,24 @@
 import {
   Component,
-  OnInit,
-  OnDestroy,
-  Output,
   EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
 } from '@angular/core';
 import {
-  FormGroup,
   FormBuilder,
+  FormGroup,
   Validators,
  } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
 
-import { StorageService } from '../../core/storage.service';
 import { ImageService } from '../../core/image.service';
-import { PinImage } from '../../helpers/pin-image';
+import { StorageService } from '../../core/storage.service';
 import {
-  imageURLValidator,
   httpURLValidator,
+  imageURLValidator,
 } from '../../helpers/image-url-validator';
+import { PinImage } from '../../helpers/pin-image';
 const placeholder = require('../../../../../assets/placeholder.png');
 
 @Component({
@@ -26,7 +26,7 @@ const placeholder = require('../../../../../assets/placeholder.png');
   templateUrl: './post-image.component.html',
   styleUrls: ['./post-image.component.scss'],
 })
-export class PostImageComponent {
+export class PostImageComponent implements OnInit, OnDestroy {
   form: FormGroup;
   placeholder: string;
   submitted = false;

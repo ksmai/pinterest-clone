@@ -1,13 +1,13 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import 'rxjs/add/observable/of';
+import { Observable } from 'rxjs/Observable';
 
-import { CoreModule } from '../core/core.module';
-import { SharedModule } from '../shared/shared.module';
-import { HomeModule } from './home.module';
-import { ImageService } from '../core/image.service';
 import { AuthService } from '../core/auth.service';
+import { CoreModule } from '../core/core.module';
+import { ImageService } from '../core/image.service';
+import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home.component';
+import { HomeModule } from './home.module';
 
 let fixture: ComponentFixture<HomeComponent>;
 let component: HomeComponent;
@@ -26,6 +26,7 @@ class Page {
   }
 
   createElements(): void {
+    return;
   }
 }
 

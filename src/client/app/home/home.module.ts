@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { SharedModule } from '../shared/shared.module';
-import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
@@ -21,4 +21,3 @@ import { HomeRoutingModule } from './home-routing.module';
 })
 export class HomeModule {
 }
-

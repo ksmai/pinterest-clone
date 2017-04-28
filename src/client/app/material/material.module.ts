@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import {
-  MdProgressSpinnerModule,
-  MdListModule,
   MdButtonModule,
   MdCardModule,
   MdDialogModule,
   MdIconModule,
   MdInputModule,
+  MdListModule,
+  MdProgressSpinnerModule,
   MdSnackBarModule,
   MdToolbarModule,
 } from '@angular/material';

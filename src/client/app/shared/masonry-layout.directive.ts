@@ -1,7 +1,8 @@
+/* tslint:disable: no-input-rename directive-selector */
 import {
   Directive,
-  Input,
   ElementRef,
+  Input,
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
@@ -45,4 +46,3 @@ export class MasonryLayoutDirective implements OnChanges {
     }
   }
 }
-

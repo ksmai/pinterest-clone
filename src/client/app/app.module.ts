@@ -10,10 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FooterModule } from './footer/footer.module';
-import { NavbarModule } from './navbar/navbar.module';
 import { HomeModule } from './home/home.module';
-import { UserModule } from './user/user.module';
+import { NavbarModule } from './navbar/navbar.module';
 import { SharedModule } from './shared/shared.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   imports: [

@@ -1,9 +1,9 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
-import { FooterComponent } from './footer.component';
 import { SharedModule } from '../shared/shared.module';
+import { FooterComponent } from './footer.component';
 
 let fixture: ComponentFixture<FooterComponent>;
 let component: FooterComponent;

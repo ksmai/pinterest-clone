@@ -1,7 +1,7 @@
 import { User } from './user';
 
 export class PinImage {
-  _id: string;
+  _id: string; /* tslint:disable-line */
   url: string;
   description: string;
   likers: User[];

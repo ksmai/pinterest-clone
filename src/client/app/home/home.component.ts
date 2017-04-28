@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 
-import { ImageService } from '../core/image.service';
 import { AuthService } from '../core/auth.service';
+import { ImageService } from '../core/image.service';
 import { PinImage } from '../helpers/pin-image';
-import { User } from '../helpers/user';
 import { showPlaceholder } from '../helpers/show-placeholder';
+import { User } from '../helpers/user';
 
 @Component({
   templateUrl: './home.component.html',
@@ -28,11 +28,11 @@ export class HomeComponent implements OnInit {
     this.images = [];
     this.imageService
       .list(0, 10)
-      .subscribe(images => this.addImages(images));
+      .subscribe((images) => this.addImages(images));
 
     this.authService
       .getUser(true)
-      .subscribe(user => this.user = user);
+      .subscribe((user) => this.user = user);
   }
 
   loadMore(): void {
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     const len = this.images.length;
     this.imageService
       .list(len, len + 10)
-      .subscribe(images => {
+      .subscribe((images) => {
         if (images.length > 0) {
           this.addImages(images);
         } else {
@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
     }
 
     return image.likers
-      .map(liker => liker._id)
+      .map((liker) => liker._id)
       .indexOf(this.user._id) === -1;
   }
 
@@ -90,9 +90,9 @@ export class HomeComponent implements OnInit {
   }
 
   private addImages(images: PinImage[]): void {
-    const existingIDs = this.images.map(image => image._id);
+    const existingIDs = this.images.map((image) => image._id);
     const newImages = images
-      .filter(image => existingIDs.indexOf(image._id) === -1);
+      .filter((image) => existingIDs.indexOf(image._id) === -1);
     this.images = this.images.concat(newImages);
   }
 }

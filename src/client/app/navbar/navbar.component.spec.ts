@@ -1,13 +1,13 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdSnackBar } from '@angular/material';
+import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 
-import { NavbarComponent } from './navbar.component';
-import { SharedModule } from '../shared/shared.module';
 import { AuthService } from '../core/auth.service';
+import { SharedModule } from '../shared/shared.module';
+import { NavbarComponent } from './navbar.component';
 
 let fixture: ComponentFixture<NavbarComponent>;
 let component: NavbarComponent;

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdSnackBar, MdDialog } from '@angular/material';
+import { MdDialog, MdSnackBar } from '@angular/material';
 
 import { ImageService } from '../core/image.service';
 import { PinImage } from '../helpers/pin-image';
-import { DialogComponent } from '../shared/dialog/dialog.component';
 import { showPlaceholder } from '../helpers/show-placeholder';
+import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({
   templateUrl: './user.component.html',
@@ -28,7 +28,7 @@ export class UserComponent implements OnInit {
   }
 
   delete(id: string): void {
-    const idx = this.images.findIndex(image => image._id === id);
+    const idx = this.images.findIndex((image) => image._id === id);
     if (idx === -1) {
       return;
     }
@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
         () => {
           this.snackbar.open('Image deleted', null, {
             duration: 2000,
-          })
+          });
         },
 
         () => {

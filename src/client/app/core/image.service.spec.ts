@@ -1,17 +1,17 @@
 import { ReflectiveInjector } from '@angular/core';
 import { fakeAsync, tick } from '@angular/core/testing';
 import {
-  RequestOptions,
   BaseRequestOptions,
   ConnectionBackend,
+  Http,
+  RequestOptions,
   Response,
   ResponseOptions,
-  Http,
 } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
-import { ImageService } from './image.service';
 import { PinImage } from '../helpers/pin-image';
+import { ImageService } from './image.service';
 
 const mockImages: PinImage[] = [
   {
@@ -49,7 +49,7 @@ describe('ImageService', () => {
 
   it('should list images', fakeAsync(() => {
     let images;
-    imageService.list(42, 9).subscribe(res => images = res);
+    imageService.list(42, 9).subscribe((res) => images = res);
     expect(lastConn.request.url).toMatch(/image/);
     expect(lastConn.request.url).toMatch(/skip=42/);
     expect(lastConn.request.url).toMatch(/limit=9/);
@@ -64,7 +64,7 @@ describe('ImageService', () => {
 
   it('should list own images', fakeAsync(() => {
     let images;
-    imageService.getOwn().subscribe(res => images = res);
+    imageService.getOwn().subscribe((res) => images = res);
     expect(lastConn.request.url).toMatch(/image\/me/);
 
     lastConn.mockRespond(new Response(new ResponseOptions({
@@ -81,12 +81,12 @@ describe('ImageService', () => {
     const body = { url, description };
 
     let image;
-    imageService.upload(url, description).subscribe(res => image = res);
+    imageService.upload(url, description).subscribe((res) => image = res);
     expect(lastConn.request.url).toMatch(/image/);
     expect(JSON.parse(lastConn.request.getBody())).toEqual(body);
 
     lastConn.mockRespond(new Response(new ResponseOptions({
-      body: JSON.stringify({ image: mockImages[0] })
+      body: JSON.stringify({ image: mockImages[0] }),
     })));
     tick();
     expect(image).toEqual(mockImages[0]);
@@ -96,12 +96,12 @@ describe('ImageService', () => {
     const imageID = 'someid';
 
     let image;
-    imageService.like(imageID).subscribe(res => image = res);
+    imageService.like(imageID).subscribe((res) => image = res);
     expect(lastConn.request.url).toMatch(/image/);
     expect(JSON.parse(lastConn.request.getBody())).toEqual({ imageID });
 
     lastConn.mockRespond(new Response(new ResponseOptions({
-      body: JSON.stringify({ image: mockImages[0] })
+      body: JSON.stringify({ image: mockImages[0] }),
     })));
     tick();
     expect(image).toEqual(mockImages[0]);
@@ -111,12 +111,12 @@ describe('ImageService', () => {
     const imageID = 'someid';
 
     let image;
-    imageService.delete(imageID).subscribe(res => image = res);
+    imageService.delete(imageID).subscribe((res) => image = res);
     expect(lastConn.request.url).toMatch(/image/);
     expect(JSON.parse(lastConn.request.getBody())).toEqual({ imageID });
 
     lastConn.mockRespond(new Response(new ResponseOptions({
-      body: JSON.stringify({ image: mockImages[0] })
+      body: JSON.stringify({ image: mockImages[0] }),
     })));
     tick();
     expect(image).toEqual(mockImages[0]);

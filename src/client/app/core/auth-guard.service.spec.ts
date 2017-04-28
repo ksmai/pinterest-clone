@@ -1,15 +1,15 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpModule } from '@angular/http';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpModule } from '@angular/http';
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs/Observable';
 
-import { CoreModule } from './core.module';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
+import { CoreModule } from './core.module';
 
 @Component({
   template: '',

@@ -66,9 +66,10 @@ export class HomeComponent implements OnInit {
 
         () => {
           image.likers.pop();
-          this.snackbar.open('Fail to like image', null, {
-            duration: 2000,
-          });
+          this.snackbar
+            .open('Unable to like image', 'RETRY', { duration: 2000 })
+            .onAction()
+            .subscribe(() => setTimeout(() => this.like(image), 1000));
         },
       );
   }

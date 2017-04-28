@@ -29,8 +29,11 @@ export class UserComponent implements OnInit {
 
   delete(id: string): void {
     const idx = this.images.findIndex(image => image._id === id);
-    const [deletedImage] = this.images.splice(idx, 1);
+    if (idx === -1) {
+      return;
+    }
 
+    const [deletedImage] = this.images.splice(idx, 1);
     this.imageService.delete(id)
       .subscribe(
         () => {
@@ -42,8 +45,9 @@ export class UserComponent implements OnInit {
         () => {
           this.images.splice(idx, 0, deletedImage);
           this.snackbar
-            .open('Deletion failed', 'RETRY', { duration: 2000 })
-            .onAction().subscribe(() => this.delete(id));
+            .open('Unable to delete', 'RETRY', { duration: 2000 })
+            .onAction()
+            .subscribe(() => setTimeout(() => this.delete(id), 1000));
         },
       );
   }

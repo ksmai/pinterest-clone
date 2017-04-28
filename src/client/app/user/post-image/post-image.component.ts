@@ -91,11 +91,10 @@ export class PostImageComponent {
 
   private submitFailure(err: any) {
     this.submitted = false;
-    this.snackbar.open('Image upload failed', 'RETRY', {
-      duration: 2000,
-    })
+    this.snackbar
+      .open('Unable to upload image', 'RETRY', { duration: 2000 })
       .onAction()
-      .subscribe(() => this.submitForm());
+      .subscribe(() => setTimeout(() => this.submitForm(), 1000));
   }
 
   private createForm(): void {

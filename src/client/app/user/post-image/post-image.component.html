@@ -4,6 +4,7 @@
   <img
     md-card-image
     [src]="form.value.url"
+    (load)="onLoad()"
     *ngIf="form.get('url').status === 'VALID'"
   >
 
@@ -18,12 +19,14 @@
       <md-input-container>
         <input mdInput formControlName="url" type="url">
         <md-placeholder>Image URL</md-placeholder>
-        <md-error align="end" *ngIf="form.value.url?.length > 0">
-          Invalid URL
-        </md-error>
-        <md-error align="end" *ngIf="form.value.url?.length === 0">
-          URL is required
-        </md-error>
+        <md-error
+          align="end"
+          *ngIf="!isHTTP(form.value.url) && form.value.url"
+        >Invalid URL (http/https only)</md-error>
+        <md-error
+          align="end"
+          *ngIf="isHTTP(form.value.url) && form.value.url"
+        >Cannot load image</md-error>
       </md-input-container>
 
       <md-input-container>
@@ -47,7 +50,7 @@
         [disabled]="form.status !== 'VALID'"
         *ngIf="!submitted"
       >
-        Submit
+        SUBMIT
       </button>
 
       <md-progress-spinner *ngIf="submitted" mode="indeterminate">
@@ -58,7 +61,7 @@
         md-button
         (click)="resetForm()"
         [disabled]="form.pristine || submitted"
-      >Reset</button>
+      >RESET</button>
     </form>
   </md-card-content>
 </md-card>

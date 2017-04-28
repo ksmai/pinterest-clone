@@ -4,7 +4,10 @@
   class="masonry-gird"
   #masonry="masonryLayout"
 >
-  <pin-post-image (imageCreated)="createImage($event)"></pin-post-image>
+  <pin-post-image
+    (imageCreated)="createImage($event)"
+    (imageLoaded)="updateLayout()"
+  ></pin-post-image>
 
   <md-card *ngFor="let image of images" class="masonry-item">
     <md-card-subtitle>{{image.date|date:'short'}}</md-card-subtitle>
@@ -19,8 +22,8 @@
 
     <ng-template #showButton>
       <md-card-content class="show-button">
-        <button (click)="image.show = true" md-button color="primary">
-          Show image
+        <button (click)="showImage(image)" md-button color="primary">
+          SHOW IMAGE
         </button>
       </md-card-content>
     </ng-template>

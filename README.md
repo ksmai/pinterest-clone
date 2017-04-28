@@ -1,4 +1,4 @@
-# pinterest-clone [![Build Status](https://travis-ci.org/ksmai/pinterest-clone.svg?branch=master)](https://travis-ci.org/ksmai/pinterest-clone)
+# pinterest-clone [![Build Status](https://travis-ci.org/ksmai/pinterest-clone.svg?branch=master)](https://travis-ci.org/ksmai/pinterest-clone) [Live Demo](https://ksmai-pinterest.herokuapp.com/)
 A simple web application for users to view, post and star images. Built with MEAN technologies. Inspired by Pinterest.
 
 ## To start

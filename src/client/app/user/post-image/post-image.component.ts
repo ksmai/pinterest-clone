@@ -15,7 +15,10 @@ import { MdSnackBar } from '@angular/material';
 import { StorageService } from '../../core/storage.service';
 import { ImageService } from '../../core/image.service';
 import { PinImage } from '../../helpers/pin-image';
-import { imageURLValidator } from '../../helpers/image-url-validator';
+import {
+  imageURLValidator,
+  httpURLValidator,
+} from '../../helpers/image-url-validator';
 const placeholder = require('../../../../../assets/placeholder.png');
 
 @Component({
@@ -29,6 +32,7 @@ export class PostImageComponent {
   submitted = false;
 
   @Output() imageCreated = new EventEmitter<PinImage>();
+  @Output() imageLoaded = new EventEmitter();
 
   constructor(
     private imageService: ImageService,
@@ -47,7 +51,12 @@ export class PostImageComponent {
     this.storageService.setItem('unsavedForm', this.form.value);
   }
 
+  clearStorage(): void {
+    this.storageService.setItem('unsavedForm', null);
+  }
+
   resetForm(): void {
+    this.clearStorage();
     this.form.reset();
   }
 
@@ -63,17 +72,26 @@ export class PostImageComponent {
       .subscribe(
         (image) => this.submitSuccess(image),
         (err) => this.submitFailure(err),
-        () => this.submitted = false,
       );
+  }
+
+  onLoad() {
+    this.imageLoaded.emit();
+  }
+
+  isHTTP(url: string) {
+    return url && url.match(/^https?:\/\//);
   }
 
   private submitSuccess(image: PinImage) {
     this.imageCreated.emit(image);
+    this.submitted = false;
     this.resetForm();
   }
 
   private submitFailure(err: any) {
-    this.snackbar.open('Image upload failed', 'Retry', {
+    this.submitted = false;
+    this.snackbar.open('Image upload failed', 'RETRY', {
       duration: 2000,
     })
       .onAction()
@@ -86,7 +104,7 @@ export class PostImageComponent {
     const description = initialState && initialState.description || '';
 
     this.form = this.fb.group({
-      url: [url, Validators.required, imageURLValidator],
+      url: [url, httpURLValidator, imageURLValidator],
       description: [description, Validators.maxLength(128)],
     });
   }

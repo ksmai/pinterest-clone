@@ -7,4 +7,5 @@ export class PinImage {
   likers: User[];
   owner: User;
   date: string;
+  show?: boolean;
 }

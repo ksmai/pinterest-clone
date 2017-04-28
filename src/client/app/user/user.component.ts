@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
         () => {
           this.images.splice(idx, 0, deletedImage);
           this.snackbar
-            .open('Deletion failed', 'Retry', { duration: 2000 })
+            .open('Deletion failed', 'RETRY', { duration: 2000 })
             .onAction().subscribe(() => this.delete(id));
         },
       );
@@ -52,8 +52,8 @@ export class UserComponent implements OnInit {
     this.dialog.open(DialogComponent, {
       data: {
         title: 'Delete image?',
-        yes: 'Delete',
-        no: 'Cancel',
+        yes: 'DELETE',
+        no: 'CANCEL',
       },
     })
       .afterClosed()
@@ -62,10 +62,20 @@ export class UserComponent implements OnInit {
 
   showPlaceholder(image: PinImage): void {
     showPlaceholder(image);
-    this.masonry.updateLayout();
+    this.updateLayout();
+  }
+
+  showImage(image: PinImage): void {
+    image.show = true;
+    this.updateLayout();
+  }
+
+  updateLayout(): void {
+    setTimeout(() => this.masonry.updateLayout(), 0);
   }
 
   createImage(image: PinImage): void {
+    image.show = true;
     this.images.unshift(image);
   }
 }
